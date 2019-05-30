@@ -1,0 +1,9 @@
+./**/*.pyc
+./**/*.ipynb
+./**/*.pth
+./**/__pycache__
+.idea
+.DS_Store
+.secret.json
+./input/cifar-100-python
+./input/cifar-100-python.tar.gz
