@@ -33,11 +33,11 @@ def main():
     model = efficientnet_b0(num_classes=100).to(device)
     # Optimizer
     # torch.optim : https://pytorch.org/docs/stable/optim.html
-    optimizer = torch.optim.RMSprop(model.parameters(), lr=0.256, momentum=0.9, weight_decay=0.9)
+    optimizer = torch.optim.RMSprop(model.parameters(), lr=0.016, momentum=0.9, weight_decay=0.9)
     # optimizer = torch.optim.SGD(model.parameters(), lr=0.1, momentum=0.9, weight_decay=1e-5)
     # Scheduler
     # torch.optim.lr_scheduler : https://pytorch.org/docs/stable/optim.html?highlight=lr_scheduler#torch.optim.lr_scheduler.LambdaLR
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=int(2.4*len(train_dataset)), gamma=0.97)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=int(2.4*len(train_dataloader)), gamma=0.97)
     # Loss and Evalaiton function
     loss_fn = torch.nn.CrossEntropyLoss().to(device)
     eval_fn = accuracy
@@ -49,7 +49,7 @@ def main():
                                                device, loss_fn, eval_fn, i, scheduler)
         test_loss, test_accuracy = test(model, test_dataloader,
                                             device, loss_fn, eval_fn)
-        print(f'''========   epoch {i:>3}   ========
+        print(f'''========   epoch {i:>3} (lr: {scheduler.get_lr()[0]:.5f})  ========
 train loss = {train_loss:.5f} | train err = {1-train_accuracy:.2%} |
 test loss = {test_loss:.5f} | test err = {1-test_accuracy:.2%}''')
 
