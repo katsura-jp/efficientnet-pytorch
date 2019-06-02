@@ -1,8 +1,11 @@
 import torch
+import torchvision.transforms as transforms
 import numpy as np
 import cv2
 import albumentations as albu
 from albumentations.pytorch import ToTensor
+from .autoaugment import *
+
 
 class TrainAugment(object):
     def __init__(self):
@@ -31,3 +34,24 @@ class TestAugment(object):
         transformed = self.Compose(image=image)
         image = transformed['image']
         return image
+
+class TrainAutoAugment(object):
+    def __init__(self, policy='imagenet'):
+        assert policy in ['imagenet', 'cifar', 'svhn']
+        if policy == 'imagenet':
+            self.policy = ImageNetPolicy
+        elif policy == 'cifar':
+            self.policy = CIFAR10Policy
+        elif policy == 'svhn':
+            self.policy = SVHNPolicy
+        else:
+            raise NotImplementedError
+
+        self.Compose = transforms.Compose([
+                            self.policy(),
+                            transforms.ToTensor()])
+
+    def __call__(self, image):
+        return self.Compose(image)
+
+
