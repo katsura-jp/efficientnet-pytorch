@@ -1,5 +1,12 @@
-# efficientnet
+# EfficientNet
+PyTorch implementation for:
 
-I have not yet got the result like a paper.
+[EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)
 
-And I publish the experimental results of CIFAR-100, so please take a look [here](https://www.comet.ml/katsura-jp/efficientnet) .
+Note:
+- I have not yet got the result like a paper.
+- And I publish the experimental results of CIFAR-100, so please take a look [here](https://www.comet.ml/katsura-jp/efficientnet) .
+
+
+
+
