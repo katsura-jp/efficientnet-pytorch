@@ -9,4 +9,5 @@ Note:
 
 
 
-
+# Acknowledgement
+- Original TensorFlow implementation: https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet

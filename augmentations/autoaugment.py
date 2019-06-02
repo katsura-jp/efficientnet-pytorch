@@ -1,4 +1,4 @@
-# Reference
+# Acknowledgement
 # URL : https://github.com/DeepVoltaire/AutoAugment/raw/master/autoaugment.py
 #####
 
